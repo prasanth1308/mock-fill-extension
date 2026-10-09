@@ -1,0 +1,27 @@
+name: Release packages
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npx wxt prepare
+      - run: npm run check
+      - run: npm run build:all
+      - run: npm run lint:firefox
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - run: npm run package
+      - name: Upload release archives
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" artifacts/*.zip artifacts/SHA256SUMS.txt --title "FormSeed $GITHUB_REF_NAME" --notes-file docs/RELEASE_NOTES.md --prerelease

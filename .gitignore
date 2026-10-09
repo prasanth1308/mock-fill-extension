@@ -1,0 +1,14 @@
+node_modules/
+.output/
+.wxt/
+artifacts/
+playwright-report/
+test-results/
+coverage/
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+safari-build/

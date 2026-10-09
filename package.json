@@ -1,0 +1,58 @@
+{
+  "name": "formseed",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Offline, cross-browser mock form filling for developers and QA teams",
+  "type": "module",
+  "license": "MIT",
+  "overrides": {
+    "shell-quote": "1.12.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "wxt --mv3",
+    "dev:firefox": "wxt -b firefox --mv3",
+    "postinstall": "wxt prepare",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "build": "wxt build --mv3",
+    "build:firefox": "wxt build -b firefox --mv3",
+    "build:edge": "wxt build -b edge --mv3",
+    "build:safari": "wxt build -b safari --mv3",
+    "build:opera": "wxt build -b opera --mv3",
+    "safari:project": "node scripts/safari-project.mjs",
+    "build:all": "node scripts/build-all.mjs",
+    "package": "node scripts/package.mjs",
+    "icons": "node scripts/icons.mjs",
+    "lint:firefox": "addons-linter .output/firefox-mv3 --warnings-as-errors",
+    "check": "npm run typecheck && npm test",
+    "demo": "vite --host 127.0.0.1 --port 4173"
+  },
+  "dependencies": {
+    "@faker-js/faker": "10.6.0"
+  },
+  "devDependencies": {
+    "@angular/common": "21.2.25",
+    "@angular/compiler": "21.2.25",
+    "@angular/core": "21.2.25",
+    "@angular/platform-browser": "21.2.25",
+    "@playwright/test": "1.64.0",
+    "@types/node": "26.6.4",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "addons-linter": "10.13.0",
+    "jsdom": "29.1.1",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-select": "5.10.2",
+    "sharp": "0.35.5",
+    "typescript": "7.0.2",
+    "vite": "8.3.4",
+    "vitest": "4.1.11",
+    "vue": "3.5.43",
+    "wxt": "0.21.4"
+  }
+}

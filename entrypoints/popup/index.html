@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>FormSeed</title></head>
+<body>
+  <main>
+    <header class="row between"><div class="brand"><img src="/icons/48.png" alt=""><strong>FormSeed</strong></div><span class="pill">Offline</span></header>
+    <section class="intro"><p class="eyebrow">GOOD DATA. LESS TYPING.</p><h1>Give your forms<br>a fresh start.</h1><p class="muted">Realistic test data, one click away.</p></section>
+    <div class="site"><span class="site-dot"></span><span id="site">Loading current site…</span><button id="site-toggle" class="quiet" hidden>Pause</button></div>
+    <button id="fill-page" class="primary fill">Fill this page <span aria-hidden="true">↗</span></button>
+    <div class="actions"><button id="fill-form">Fill focused form</button><button id="fill-field">Fill focused field</button><button id="pick">Choose a field</button><button id="undo">Undo last fill</button></div>
+    <div class="preferences"><label class="check"><input id="overwrite" type="checkbox">Replace existing values</label><label for="seed">Repeatable seed <span class="muted">(optional)</span></label><input id="seed" maxlength="100" placeholder="e.g. signup-demo" autocomplete="off"><p class="help">Use the same seed and form for repeatable data.</p></div>
+    <div id="status" class="notice" role="status" aria-live="polite"></div>
+    <details id="issues" hidden><summary>Details</summary><ul id="issue-list"></ul></details>
+    <footer class="row between"><button id="settings" class="quiet">Settings &amp; custom rules</button><span class="muted">v0.1.0</span></footer>
+  </main>
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>
