@@ -16,7 +16,8 @@ for (const browser of ['chrome', 'firefox', 'edge', 'safari', 'opera']) {
 const sourceFiles = execFileSync('git', ['ls-files', '-z'], { encoding: 'utf8' }).split('\0').filter(Boolean);
 if (!sourceFiles.includes('package-lock.json')) throw new Error('Commit sources before preparing the reviewer archive.');
 const sourceArchive = path.resolve('artifacts', `formseed-${version}-sources.zip`);
-execFileSync('zip', ['-q', sourceArchive, ...sourceFiles], { stdio: 'inherit' });
+// Build a fresh archive so removed files cannot survive from a previous run.
+await writeFile(sourceArchive, execFileSync('zip', ['-q', '-', ...sourceFiles], { maxBuffer: 64 * 1024 * 1024 }));
 const files = (await readdir('artifacts')).filter(f => f.endsWith('.zip') && f.includes(version)).sort();
 const checksums = await Promise.all(files.map(async f => `${createHash('sha256').update(await readFile(path.join('artifacts', f))).digest('hex')}  ${f}`));
 await writeFile('artifacts/SHA256SUMS.txt', checksums.join('\n') + '\n');

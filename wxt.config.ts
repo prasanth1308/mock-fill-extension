@@ -2,6 +2,8 @@ import { defineConfig } from 'wxt';
 
 export default defineConfig({
   manifestVersion: 3,
+  // scripts/package.mjs creates a reviewer archive from tracked source files only.
+  zip: { zipSources: false },
   manifest: ({ browser }) => ({
     name: 'FormSeed — Mock Form Filler',
     description: 'Fill forms with realistic test data. Custom rules, site profiles, repeatable seeds, and undo. Works offline.',
